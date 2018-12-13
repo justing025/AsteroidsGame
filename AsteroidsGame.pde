@@ -1,5 +1,6 @@
 Spaceship bob = new Spaceship();
-Star [] stars; //your variable declarations here
+Star [] stars;
+Asteroid [] ast; //your variable declarations here
 public void setup() 
 {
   size(1000,1000);
@@ -8,7 +9,12 @@ public void setup()
     for(int i = 0; i < stars.length; i++)
     {
       stars[i] = new Star();
-    }//your code here
+    }
+   ast = new Asteroid[5];
+      for(int j=0; j < ast.length; j++)
+      {
+        ast[j] = new Asteroid();
+      }//your code here
 }
 public void draw() 
 {
@@ -17,6 +23,11 @@ public void draw()
   for(int i=0; i<stars.length; i++)
   {
     stars[i].Show();
+  }
+  for(int j=0; j < ast.length; j++)
+  {
+    ast[j].show();
+    ast[j].move();
   }
   bob.show();
   bob.move();
@@ -35,11 +46,11 @@ public void keyPressed()
   }
   if (key == 'w')
   {
-    bob.turn(2);
+    bob.turn(5);
   }
   if (key == 's')
   {
-    bob.turn(-2);
+    bob.turn(-5);
   }
   if (key == 'f')
   {
