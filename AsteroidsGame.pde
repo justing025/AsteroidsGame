@@ -1,6 +1,7 @@
 Spaceship bob = new Spaceship();
 Star [] stars;
-Asteroid [] ast; //your variable declarations here
+ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+ArrayList <Bullet> shell = new ArrayList <Bullet>(); //your variable declarations here
 public void setup() 
 {
   size(1000,1000);
@@ -10,11 +11,12 @@ public void setup()
     {
       stars[i] = new Star();
     }
-   ast = new Asteroid[5];
-      for(int j=0; j < ast.length; j++)
-      {
-        ast[j] = new Asteroid();
-      }//your code here
+    for(int j=0; j<5; j++)
+    {
+      Asteroid i = new Asteroid();
+      rocks.add(i);
+    }//your code here
+    
 }
 public void draw() 
 {
@@ -24,16 +26,22 @@ public void draw()
   {
     stars[i].Show();
   }
-  for(int j=0; j < ast.length; j++)
+  for(int j=0; j < rocks.size(); j++)
   {
-    ast[j].show();
-    ast[j].move();
+    rocks.get(j).show();
+    rocks.get(j).move();
   }
+    for(int l = 0; l < shell.size(); l++)
+  {
+     shell.get(l).show();
+     shell.get(l).move();
+  }
+ 
   bob.show();
   bob.move();
- 
+ }
   //your code here
-}
+
 public void keyPressed()
 {
   if (key == 'd')
@@ -52,6 +60,11 @@ public void keyPressed()
   {
     bob.turn(-5);
   }
+  if (key == 'b')
+  {
+     shell.add(new Bullet(bob));
+  }
+   
   if (key == 'f')
   {
     bob.setDirectionX(0);
